@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+
+html, body {
+    height: 100%;
+    overflow: hidden; /* Remove a rolagem */
+}
+
+body * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: rgb(88, 88, 88);
+    font-family: 'Outfit', sans-serif; /* Atualizado para usar a fonte importada */
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.bolhas {
+    position: absolute;
+    display: flex;
+    /* Seu código de bolhas aqui */
+}
+
+.bolhas span {
+    width: 30px;
+    height: 30px;
+    background: pink;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px pink,
+    0 0 50px pink,
+    0 0 100px pink;
+    animation: animar calc(90s / var(--i)) linear infinite;
+}
+
+@keyframes animar {
+    0% {
+        transform: translateY(100vh) scale(0);
+    }
+    100% {
+        transform: translateY(-5vh) scale(1);
+    }
+}
+
+.bolhas span:nth-of-type(even) {
+    background: rgb(255, 187, 221);
+    box-shadow: 0 0 0 10px pink,
+    0 0 50px rgb(255, 28, 65),
+    0 0 100px rgb(255, 9, 50);  
+}
+
+.botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100px;
+    height: 100px;
+    color: rgb(134, 0, 0);
+    background: rgb(92, 92, 92);
+    border: 3px solid black;
+    border-radius: 50%;
+    user-select: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 50px;
+    text-align: center;
+}
+
+.botao:hover {
+    background: rgb(26, 26, 26);
+    transition: 1s;
+}
+
+#resultado {
+    position: absolute;
+    top: 50%;
+    right: 100px;
+    transform: translate(-50%, -50%);
+    font-size: 24px; /* Tamanho da fonte do resultado */
+    color: white;
+    text-align: center;
+    margin-top: 20px; /* Espaço acima do resultado */
+    display: none; /* Inicialmente escondido */
+}
+
+#imagem-jogo {
+    max-width: 200px; /* Limita a largura da imagem */
+    height: auto;
+    display: block;
+    margin-top: 10px;
+}
+
+.roleta-container {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    width: 300px;
+    height: 100px;
+    border: 2px solid black;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.roleta {
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    font-size: 24px;
+    text-align: center;
+    line-height: 100px;
+    will-change: transform;
+    animation: none; /* Inicialmente sem animação */
+}
+
+.item {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Animação para girar a roleta horizontalmente */
+@keyframes girar {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+nav.menu-lateral {
+    width: 32px;
+    height: 100%;
+    background-color: rgb(255, 156, 215);
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 40px 0 40px;
+    box-shadow: -3px 0 0 rgb(255, 107, 132);
+    z-index: 10;
+    overflow: hidden;
+    transition: .2s;
+}
+
+nav.menu-lateral .txt-link {
+    margin-left: 10px;
+}
+
+nav.menu-lateral.expandir {
+    width: 250px;
+}
+
+.btn-expandir {
+    width: 100%;
+    padding-right: 10px;
+}
+
+.btn-expandir > i {
+    display: flex;
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 0;
+}
+
+ul {
+    height: 100%;
+    list-style-type: none;
+}
+
+ul li.item-menu {
+    transition: .2s;
+}
+
+ul li.item-menu:hover {
+    background: rgb(255, 98, 125);
+}
+
+ul li.item-menu:hover .txt-link {
+    opacity: 1;
+    margin-left: 40px;
+}
+
+ul li.item-menu a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px 0%;
+    display: flex;
+    margin-bottom: 10px;
+    line-height: 20px;
+}
+
+ul li.item-menu a .txt-link {
+    margin-right: 10px;
+    transition: .5s;
+    opacity: 0;
+}
+
+nav.menu-lateral.expandir .txt-link {
+    margin-left: 40px;
+    opacity: 1;
+}
+
+ul li.item-menu a .icon > i {
+    font-size: 30px;
+}
+
+ul li.item-menu .dropdown-menu {
+    display: none;
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+ul li.item-menu.dropdown.open .dropdown-menu {
+    display: block;
+}
+
+ul li.item-menu .dropdown-menu li {
+    padding: 10px 0;
+}
+
+ul li.item-menu .dropdown-menu li a {
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+ul li.item-menu .dropdown-menu li a:hover {
+    background: rgb(255, 114, 137);
+    transition: .2s;
+    box-shadow: -3px 0 0 black;
+}
+
+/* Padrão atual */
+.bolhas.padrão span {
+    background: pink;
+    box-shadow: 0 0 0 10px rgb(255, 135, 155), 0 0 50px pink, 0 0 100px pink;
+}
+
+/* Cores quentes */
+.bolhas.quente span {
+    background: rgba(255, 23, 23, 0.6);
+    box-shadow: 0 0 0 10px rgba(255, 78, 78, 0.6), 0 0 50px rgba(222, 255, 36, 0.6), 0 0 100px rgba(255, 87, 34, 0.6);
+}
+
+/* Cores frias */
+.bolhas.fria span {
+    background: rgba(33, 150, 243, 0.6);
+    box-shadow: 0 0 0 10px rgba(28, 153, 255, 0.6), 0 0 50px rgba(72, 0, 187, 0.6), 0 0 100px rgba(33, 150, 243, 0.6);
+}
